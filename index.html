@@ -54,15 +54,16 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
 </style>
 </head>
+
 <body class="w-[375px] h-[762px] bg-white mx-auto relative overflow-hidden">
 <div class="fixed top-0 w-full bg-white z-10 px-4 py-3 border-b">
-<div class="flex justify-between items-center">
+<div class="flex justify-start items-center">
 <div class="flex items-center">
 <img src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/71f0d1f9a6ebe7c4297fe8a4800b44a3.png" alt="Golf Course Logo" class="h-8 w-[40px] mr-2">
 <img src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/feb1f426de283e91f1657b674bf581a0.jpeg" alt="Golf Course Logo" class="h-8 w-[] mr-2">
 <div class="text-lg font-medium"></div>
 </div>
-<div class="relative" id="courseSelector">
+<div class="relative ml-2" id="courseSelector">
 <button class="flex items-center space-x-1 bg-primary text-white px-4 py-2 rounded-button" onclick="toggleCourseMenu()">
 <span id="selectedCourse">혼솔 코스</span>
 <i class="ri-arrow-down-s-line"></i>
@@ -76,28 +77,19 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 </div>
 </div>
 </div>
-<div class="mt-3 flex justify-end space-x-4 text-sm" style="margin-right: 12px;">
+<div class="mt-3 flex justify-start space-x-4 text-sm" style="margin-right: 12px;">
 <div id="holeInfo" class="text-gray-600">
-<span id="holeName">1번 홀</span> |
-<span id="whiteDistance">White 385m</span> |
-<span id="ladyDistance">Lady 350m</span> |
+<span id="holeName">5번 홀</span> |
+<span id="whiteDistance">White 312m</span> |
+<span id="ladyDistance">Lady 212m</span> |
 <span id="par">Par 4</span>
 </div>
 </div>
 </div>
 
 <div class="mt-24 px-4">
-  <div
-    class="relative w-full overflow-hidden rounded-lg flex justify-center items-center"
-    style="max-height: 63vh;"
-  >
-    <img
-      id="courseImage"
-      src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/f22bf6dae8c7339ed1675261311c6e3f.png"
-      class="course-image mx-auto"
-      style="max-height: 63vh; max-width: 100%; height: auto; width: auto;"
-      alt="골프 코스"
-    />
+  <div class="relative w-full overflow-hidden rounded-lg flex justify-center items-center" style="max-height: 63vh;">
+    <img id="courseImage" src="course_image_hon_5.png" class="course-image mx-auto" style="max-height: 63vh; max-width: 100%; height: auto; width: auto;" alt="골프 코스">
 
 
 <!-- <div class="mt-24 px-4"> -->
@@ -105,15 +97,13 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 <!--<img id="courseImage" src="https://public.readdy.ai/ai/img_res/aa47e8d6952add477f39c695990bb3d2.jpg" class="w-full h-full object-cover" alt="골프 코스" style="height: 600px;">-->
 </div>
 </div>
-<div class="fixed bottom-0 w-full bg-white border-t p-4">
-<div class="flex justify-between items-start">
-<div class="w-4/5 pr-4">
-<div class="h-[120px] overflow-y-auto custom-scrollbar text-sm text-gray-600" id="courseStrategy">
-1번 홀은 도그렉 홀로서 전략적인 플레이가 요구됩니다. 티잉 그라운드에서는 우측 벙커를 피해 중앙을 공략하는 것이 안전합니다. 세컨드 샷은 그린 좌측의 해저드를 주의하며, 그린 중앙을 겨냥하는 것이 좋습니다. 그린은 뒤에서 앞으로 기울어져 있어 어프로치 샷의 정확도가 중요합니다.
+<div class="justify-start bottom-0 w-full bg-white border-t p-4">
+<div class="flex max-w-[375px] mx-auto">
+<div class="">
+<div class="h-[120px] overflow-y-auto custom-scrollbar text-sm text-gray-600" id="courseStrategy">이번 홀은 약간 아래로 향하는 경사면을 가지고 있으며 크고 평평한 페어웨이를 가지고 있다. 그린은 티샷으로도 온 시킬 수 있는 위치에 있다. 하지만 아주 큰 벙커가 오른편에 있고, 이 벙커들은 실제 거리보다 골퍼가 보는 거리를 더 짧게 느끼게 하여 골퍼들이 직접 공략하는 모험을 하게끔 유도한다. 가장 좋은 티샷은 아이언 또는 우드공략이며, 세컨 샷은 웨지를 사용해야 작고 공략이 힘든 그린으로 구성되어있다.</div>
 </div>
-</div>
-<div class="flex flex-col space-y-2" style="margin-right: 20px;">
-<button id="prevHole" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed" onclick="changeHole('prev')" disabled>
+<div class="flex flex-col space-y-2 w-[72px]" style="margin-right: 20px;">
+<button id="prevHole" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed" onclick="changeHole('prev')">
 <i class="ri-arrow-left-s-line"></i>
 </button>
 <button id="nextHole" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full" onclick="changeHole('next')">
@@ -453,5 +443,8 @@ changeHole('prev');
 }
 });
 </script>
+
+
 </body>
+  
 </html>
