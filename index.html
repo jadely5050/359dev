@@ -13,11 +13,7 @@
 
   
 <meta charset="UTF-8">
-<metaname="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!----
 <meta name="viewport" content="width=375px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
--->
-  
 <title>골프 코스 가이드</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,44 +52,9 @@ body { font-family: 'Noto Sans KR', sans-serif; }
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-
-
-/* chatgpt */
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-}
-.container {
-  width: 100%;
-  max-width: 375px;  /* 모바일 크기로 제한 */
-  
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 내부 요소 가운데 정렬 */
-  border: 1px solid #ddd; /* PC에서도 영역 구분 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-.content {
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-}
-/* chatgpt */
-  
 </style>
 </head>
 <body class="w-[375px] h-[762px] bg-white mx-auto relative overflow-hidden">
-
-  <!------>
-  <div class="container">
-  <!------>
-    
 <div class="fixed top-0 w-full bg-white z-10 px-4 py-3 border-b">
 <div class="flex justify-between items-center">
 <div class="flex items-center">
@@ -492,9 +453,5 @@ changeHole('prev');
 }
 });
 </script>
-<!----->
-</div>
-<!----->
-  
 </body>
 </html>
