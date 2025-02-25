@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XWJ4PYBS9S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XWJ4PYBS9S');
+</script>
+
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=375px, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>골프 코스 가이드</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#2E7D32',
+secondary: '#81C784'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Noto Sans KR', sans-serif; }
+.course-image { transition: opacity 0.3s ease; }
+.course-info { transition: all 0.3s ease; }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+</style>
+</head>
+<body class="w-[375px] h-[762px] bg-white mx-auto relative overflow-hidden">
+<div class="fixed top-0 w-full bg-white z-10 px-4 py-3 border-b">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/71f0d1f9a6ebe7c4297fe8a4800b44a3.png" alt="Golf Course Logo" class="h-8 w-[40px] mr-2">
+<img src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/feb1f426de283e91f1657b674bf581a0.jpeg" alt="Golf Course Logo" class="h-8 w-[] mr-2">
+<div class="text-lg font-medium"></div>
+</div>
+<div class="relative" id="courseSelector">
+<button class="flex items-center space-x-1 bg-primary text-white px-4 py-2 rounded-button" onclick="toggleCourseMenu()">
+<span id="selectedCourse">혼솔 코스</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div id="courseMenu" class="hidden absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden z-20">
+<div class="py-1">
+<button class="w-full px-4 py-2 text-left hover:bg-gray-100" onclick="selectCourse('혼솔')">혼솔 코스</button>
+<button class="w-full px-4 py-2 text-left hover:bg-gray-100" onclick="selectCourse('바른')">바른 코스</button>
+<button class="w-full px-4 py-2 text-left hover:bg-gray-100" onclick="selectCourse('미쁨')">미쁨 코스</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 flex justify-end space-x-4 text-sm" style="margin-right: 12px;">
+<div id="holeInfo" class="text-gray-600">
+<span id="holeName">1번 홀</span> |
+<span id="whiteDistance">White 385m</span> |
+<span id="ladyDistance">Lady 350m</span> |
+<span id="par">Par 4</span>
+</div>
+</div>
+</div>
+
+<div class="mt-24 px-4">
+  <div
+    class="relative w-full overflow-hidden rounded-lg flex justify-center items-center"
+    style="max-height: 63vh;"
+  >
+    <img
+      id="courseImage"
+      src="https://static.readdy.ai/image/14cc3ba49c2c18ecafdabff497c96899/f22bf6dae8c7339ed1675261311c6e3f.png"
+      class="course-image mx-auto"
+      style="max-height: 63vh; max-width: 100%; height: auto; width: auto;"
+      alt="골프 코스"
+    />
+
+
+<!-- <div class="mt-24 px-4"> -->
+<!-- <div class="relative h-[500px] rounded-lg overflow-hidden" style="height: 600px;"> -->
+<!--<img id="courseImage" src="https://public.readdy.ai/ai/img_res/aa47e8d6952add477f39c695990bb3d2.jpg" class="w-full h-full object-cover" alt="골프 코스" style="height: 600px;">-->
+</div>
+</div>
+<div class="fixed bottom-0 w-full bg-white border-t p-4">
+<div class="flex justify-between items-start">
+<div class="w-4/5 pr-4">
+<div class="h-[120px] overflow-y-auto custom-scrollbar text-sm text-gray-600" id="courseStrategy">
+1번 홀은 도그렉 홀로서 전략적인 플레이가 요구됩니다. 티잉 그라운드에서는 우측 벙커를 피해 중앙을 공략하는 것이 안전합니다. 세컨드 샷은 그린 좌측의 해저드를 주의하며, 그린 중앙을 겨냥하는 것이 좋습니다. 그린은 뒤에서 앞으로 기울어져 있어 어프로치 샷의 정확도가 중요합니다.
+</div>
+</div>
+<div class="flex flex-col space-y-2" style="margin-right: 20px;">
+<button id="prevHole" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed" onclick="changeHole('prev')" disabled>
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button id="nextHole" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full" onclick="changeHole('next')">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+<script>
+let currentCourse = '혼솔';
+let currentHole = 1;
+const courseData = {
+'혼솔': {
+totalHoles: 9,
+holes: {
+1: {
+name: '1번 홀',
+white: '272m',
+lady: '246m',
+par: 4,
+strategy: '일반적인 파4의 길이를 가지고 있으며 왼쪽으로 휘는 홀이다. 티 샷은 약간 아래로 향하는 페어웨이로 조성되지만 그 이후는 평평하게 조성된다. 그린의 오른 편은 깊은 벙커로 둘러 쌓여 있어 어프로치 샷은 왼쪽에서 구사하는 것이 좋다.'
+},
+2: {
+name: '2번 홀',
+white: '299m',
+lady: '250m',
+par: 4,
+strategy: '매우 짧은 홀로 골퍼들은 티 샷에서 그린을 직접 공략하고자 하는 충동을 느낄 것이다. 골퍼들은 리베라 10번홀 (휴가지와 같은 홀)을 마친 후, 항상 20번 홀에서의 모든 샷은 매우 정확하게 구사되어야 한다고 깨닫게 된다. 비록 가장 짧은 홀이지만 가장 모험적인 홀이다. 그린은 굴곡이 매우 심해 퍼팅하는데 매우 신중하여야 한다.'
+},
+3: {
+name: '3번 홀',
+white: '173m',
+lady: '151m',
+par: 3,
+strategy: '이번 홀은 위로 향하는 경사면을 가지고 있으며 비교적 긴 파 3홀이다. 그린으로 향하는 가장 짧은 거리는 벙커에 매우 가깝게 볼을 위치시켜야 한다. 그린은 마치 원형경기장처럼 조성되어 오른쪽 앞과 왼쪽으로 가려져 있다. 파 또는 버디를 하는 플레이어가 이번 홀에서 승리할 것이다.'
+},
+4: {
+name: '4번 홀',
+white: '140m',
+lady: '123m',
+par: 3,
+strategy: '위로 향하는 경사면을 가진 짧은 파 3홀이다. 또한 페어웨이 오른쪽에 벙커가 매우 혼잡하게 조성되어 있다. 페어웨이는 공략하기에 힘들지 않고 그린은 페어웨이 오른쪽에서 공략하기 용이하게 조성된다. 버디찬스를 잡기 위한 매우 좋은 홀이다.'
+},
+5: {
+name: '5번 홀',
+white: '312m',
+lady: '212m',
+par: 4,
+strategy: '이번 홀은 약간 아래로 향하는 경사면을 가지고 있으며 크고 평평한 페어웨이를 가지고 있다. 그린은 티샷으로도 온 시킬 수 있는 위치에 있다. 하지만 아주 큰 벙커가 오른편에 있고, 이 벙커들은 실제 거리보다 골퍼가 보는 거리를 더 짧게 느끼게 하여 골퍼들이 직접 공략하는 모험을 하게끔 유도한다. 가장 좋은 티샷은 아이언 또는 우드공략이며, 세컨 샷은 웨지를 사용해야 작고 공략이 힘든 그린으로 구성되어있다.'
+},
+6: {
+name: '6번 홀',
+white: '305m',
+lady: '254m',
+par: 4,
+strategy: '아래로 경사진 짧은 파 4홀이다. 이 홀은 전략적인 홀로서 그린의 공략을 쉽게 하기 위해서는 긴 페이드 샷을 구사하여야 한다. 그린은 페어웨이 왼쪽에서 공략해야 유리하게끔 디자인 되었으며 표면에 공을 멈추게 하는 샷을 구사하기에 힘든 그린 표면을 조성할 것이다. 또한 마치 새 둥지처럼 모여 있는 왼쪽의 벙커를 피하기 위해서는 올바른 공략의 길을 찾아야 한다.'
+},
+7: {
+name: '7번 홀',
+white: '436m',
+lady: '333m',
+par: 5,
+strategy: '이번 홀은 전체 홀에서 가장 흥미로운 홀로 조성될 것이다.환상적인 풍경이 사방으로 흐트러져 있고 적절한 파 5홀로 그린의 공략은 돌로 구성된 계곡을 가로질러야 한다.그린은 크게 조성되지만 크고 깊은 두 개의 벙커가 신중하지 않은 클럽 선택을 위해서 위치해 있다.'
+},
+8: {
+name: '8번 홀',
+white: '229m',
+lady: '193m',
+par: 4,
+strategy: '매우 짧으며 아래로 향하는 경사면이 있는 파 4홀이다.너무 큰 그린이 조성되지만 오른 편에는 폰드가 왼쪽에는 벙커가 조성된다.그린은 세 개의 지역으로 구분되어 클럽 선택이 매우 중요하다. 클럽하우스 저편에서의 풍경은 이 홀을 주목할 것이다.'
+},
+9: {
+name: '9번 홀',
+white: '459m',
+lady: '343m',
+par: 5,
+strategy: '이번 홀은 비교적 평평하게 조성된다. 골퍼들은 큰 페어웨이 벙커가 오른 편에 조성되어 있으므로 이 벙커를 피하는 샷을 구사하여야 한다. 하지만 그린을 공략하기 용이한 세컨 샷을 위해서는 페어웨이 왼쪽으로 구사하는 현명한 샷이 필요하다.'
+}
+}
+},
+'바른': {
+totalHoles: 9,
+holes: {
+1: {
+name: '1번 홀',
+white: '306m',
+lady: '264m',
+par: 4,
+strategy: '아래로 경사진 홀이며 아주 약간 오른쪽으로 구부러진 넓은 페어웨이를 가지고 있는 홀이다.이 홀은 골퍼들이 쉽게 좋은 라운딩을 시작으로 그날의 라운딩에 흥미를 부여할 수 있도록 하는 목적으로 디자인 되었다. 페어웨이 벙커는 장타자가 아니면 쉽게 들어가지 않도록 디자인 하였으며 그린은 숏 아이언으로 쉽게 도달할 수 있다.'
+},
+2: {
+name: '2번 홀',
+white: '155m',
+lady: '131m',
+par: 3,
+strategy: '라운딩 중 처음 만나는 파3홀이며 그린 공략은 그렇게 힘들지 않다. 그린은 느린 능선을 중심으로 구분되며 버디의 찬스를 위해서는 어떠한 클럽으로 그린을 공략하여야 하는지가 중요할 것이다. 그리고 두 개의 작은 벙커가 그린의 오른편에 놓여져있으며 이는 골퍼들의 공략을 왼쪽에서 오른쪽으로 유도하여 합리적인 어프로치가 될 수 있도록 하기 위함이다.'
+},
+3: {
+name: '3번 홀',
+white: '499m',
+lady: '466m',
+par: 5,
+strategy: '첫 파 5홀이다. 약간의 아래 경사면을 가진 긴 계곡 형 홀로서 홀의 오른편 모두가 워터 헤저드로 이루어져 있다.티는 약간의 성토를해서 높이를 높게 설정하여 티에서 골퍼들이 정확하게 워터해저드의 위치를 볼 수 있도록 하였다. 티샷의 공략은 세컨샷의 용이함을 위하여 되도록 워터 해저드에 가깝게 공략하여 왼쪽의 언덕으로 인한 세컨샷을 어려움을 해소하여야 한다. 세컨샷의 렌딩존은 매우 좁게 구성되어 있어 효과적인 세 번째 샷을 위해서 아이언 종류를 매우 신중하게 골라야하는 홀이다.'
+},
+4: {
+name: '4번 홀',
+white: '298m',
+lady: '235m',
+par: 4,
+strategy: '이번 홀은 짧은 파4홀이지만 대부분의 골퍼들이 이번 나인 홀에서 가장 모험적인 공략이 필요한 홀로 기억할 것이다. Back 티에서 하는 티 샷은 3번 홀 오른편에 있는 같은 호수인 워터 해저드를 넘겨야하며 장타일수록 어프로치가 쉬울 수 있으나 모험이 필요하다. 안전한 각도로 티샷을 공략할 경우 세컨샷은 매우 힘들게 되며 워터 해저드는 세컨 샷에 큰 영향을 미칠 것이다. 또한 먼 거리의 드라이브 거리를 위해서는 호수와 포켓처럼 탈출이 힘든 깊은 왼쪽 페어웨이 벙커 사이의 지점에 정확히 안착 시킬 수 있는 샷이 필요하다.'
+},
+5: {
+name: '5번 홀',
+white: '269m',
+lady: '196m',
+par: 4,
+strategy: '날카롭게 왼쪽으로 휘는 파4홀로서 자연 그대로의 나무를 옆으로 끼고 있다. 티에서 렌딩 존까지는 위로향하는약간의 경사를 가지고 있으며, 그린에 어프로치를 하기 위해서는 비교적 가파른 경사면을 고려해야할 것이다. 이번 홀의 렌딩 존 오른편에는 큰 벙커가 자리잡고 있으며, 골퍼들은 왼쪽의 나무와 오른쪽의 벙커해저드를 벗어나기 위해서 페어웨이 중앙에 정확하게 티샷을 구사하여야 한다. 그린에는 벙커가 없으나 정밀한퍼팅 기술이 필요한 언듈레이션을 가지고 있다. 길지 않은 파 4홀이지만 정확한 티 샷을 구사하여야지만 파 또는 버디가 가능한 홀이다.'
+},
+6: {
+name: '6번 홀',
+white: '312m',
+lady: '267m',
+par: 4,
+strategy: '그늘집까지의 위로 향하는경사면을 지나면 골퍼들은 첫 9홀에서의 가장 높은 곳에 위치하게 되어 환상적인 풍경을 감상하게 된다. 오른쪽으로 약간휘는 홀인 이번홀은 티 근처에 호수가 위치하고 있다. 호수는 플레이에 많은 지장을 주지는 않지만 페어웨이 양쪽에 위치한 벙커는 장타자들에게 좁은 렌딩존을 공급하므로 공략을 위해서 정확한 샷이 필요하다. 왼쪽에 위치한 깊은 벙커는 그린 공략이 힘들도록 가로막고 있으며, 만약 홀컵의 포지션을 그린 왼쪽편으로 이동하게 되면 그린 공략은 매우 힘들 것이다.'
+},
+7: {
+name: '7번 홀',
+white: '312m',
+lady: '267m',
+par: 4,
+strategy: '이 홀은 아래 경사면으로 향하는 매우 아름다운 파 4홀이며 그린 주위에 호수가 자리잡게 된다. 렌딩 존에는 벙커가 존재하지 않으므로 골퍼들은 좀 더 쉬운 세컨샷을 위해 먼 거리를 원하게 될 것이다. 골퍼들은 코스공략을 위한 두가지 옵션을 가지게 된다. 첫 번째 옵션이 페어웨이 왼편을 공략하여 호수 쪽으로 향하는 샷을 구사할 것인지, 그렇지 않으면 페어웨이 오른쪽으로 티샷을 하여 호수를 넘기는 샷을 할 것 인지 결정하여야한다. 어떠한 방법으로도 그린 위에 볼을 떨어트렸다 하더라도 큰 구역으로 설정되어 건설되기 때문이다.'
+},
+8: {
+name: '8번 홀',
+white: '159m',
+lady: '125m',
+par: 3,
+strategy: '아래 경사면으로 향하는 파3인 이번홀은 먼 거리의 클럽하우스로 향하는샷을 구사하게 된다. 티샷은 매우 흥미롭게 그린에 안착하게 된다. 퍼팅 표면은 오른편 앞에 만들어질 벙커에의해 보호되며, 이번홀에서는 어떠한 클럽으로 공략하여야 하는지 선택이 매우 중요하다. 만약 티샷을 지나치게 된다면 매우 정확하고 기술적인 칩샷이 필요로 하게 된다.'
+},
+9: {
+name: '9번 홀',
+white: '536m',
+lady: '520m',
+par: 5,
+strategy: '왼쪽으로 휘는 파5홀인 이번 홀에서는 샷 하나하나에 매우 신중하고 정확한 샷이 필요하며 매우 드라마틱한 라운드가 이루어질 것이다. 이 홀은 그린에 도달하기 위해서 꼭3번의 샷이 필요하다. 그 어떠한 골퍼들도 2번의 샷으로 그린에 도달할 수 없다. 이번홀의 컨셉으로 골퍼들이 홀을 공략하기 위해서는 공을 최대한 호수 쪽에 가깝게 접근시켜 그 다음 샷을 쉽게 공략할 수 있도록 만들어야 한다는 것이다. 안정적인 샷을 구사하였다면 그 다음 샷에서는 두세개의 다른 클럽을 선택해야 그린 공략이 가능하다. 그린은 비교적 높게 조성되어 클럽하우스에서 바라보는 이들로 하여금 골프를 즐길 수 있는 요소로 작용할 것이다.' 
+}
+}
+},
+'미쁨': {
+totalHoles: 9,
+holes: {
+1: {
+name: '1번 홀',
+white: '328m',
+lady: '309m',
+par: 4,
+strategy: '이번 홀은 비교적 평탄한 홀이며 일반적인 길이의 홀이다. 마치 1번 홀과 비슷한 느낌을 주어 코스를 시작하는 홀로서 라운딩에 편안함을 주기 위해 설정되었다. 페어웨이 벙커는 랜덤 존에 조성되어 있어 힘들어 보이지만 장타자들을 제외하고는 페어웨이가 매우 넓어 문제시 되지 않을 것이다. 그린 벙커는 그린 왼편에 있지만 벙커 탈출은 그다지 힘들지 않다.'
+},
+2: {
+name: '2번 홀',
+white: '448m',
+lady: '425m',
+par: 5,
+strategy: '10번 홀이 끝나고 경사면을 올라오게 되면 파 5홀이 산의 경시면으로 향하여 오른쪽으로 휘는 홀이다. 골퍼들은 그린 공략을 쉽게 하기 위한 세컨 샷을 준비하기 위하여 페어웨이 오른쪽에 조성되어 있는 벙커를 넘겨야 한다. 그린의 왼쪽은 낮은 지역들이 위치하고 있어 그린 공략을 위해서는 정확한 클럽선택과 샷 구사가 필요하다. 이번 홀은 비교적 용이했던 10번 홀과 분명히 비교된다.'
+},
+3: {
+name: '3번 홀',
+white: '315m',
+lady: '220m',
+par: 4,
+strategy: '비교적 긴 파 4홀인 이번 홀은 티 샷에서 약간 위로 향하는 경사면을 가지고 있으며, 세컨 샷에서는 급격히 아래로 향하는 경사면을 가지고 있다. 세컨 샷의 렌딩 존에는 오른쪽에 큰 벙커가 자리잡고 있으므로 이 벙커를 피하기 위해서 페어웨이 왼쪽에 비교적 넓은 렌딩 존을 디자인 하였다. 이벙커를 피하게 되더라도 그린 왼편에 조성될3개의 벙커를 피하기 위해서 매우 정확하고 신중한 샷을 필요로 하게 된다. 그린은 비교적 큰 편이라 두 번의 퍼팅이 필요로 하게된다.'
+},
+4: {
+name: '4번 홀',
+white: '379m',
+lady: '260m',
+par: 4,
+strategy: '이번 파4홀은 깊은 계곡을 지나 넓은 페어웨이가 조성될 것이며 장타자들을 위한 좁은 페어웨이가 조성될 것이다. 이번 홀의 아이디어는 티 샷을 할 때 3개의 페어웨이 벙커가 조성되어 있는 오른쪽으로 구사하여야만 왼쪽에 있는 그린 공략을 어렵게 하는 벙커를 피할 수 있다. 세컨 샷은 아래로 향하는 경사면을 가지고 있으며 그린은 높고 불안정하게 조성되어 있어 볼은 그린 왼쪽 또는 오른쪽으로 쉽게 굴러 내려갈 수 있다. 세컨 샷 지점에서의 바라보는 풍경은 매우 아름다울 것이다.'
+},
+5: {
+name: '5번 홀',
+white: '138m',
+lady: '102m',
+par: 3,
+strategy: '이번 파3홀은 급하게 아래로 향하는 경사면을 가지고 있으며 그린 주위로는 벙커와 폰드로 조성되어 있다. 그린은 폰드와 뒤쪽으로 급격한 아래로 향하는 경사면이 있어 멀리 보이는 계곡과 왼쪽으로 보이는 산으로 인하여 그 풍경이 매우 아름다울 것으로 예상된다. 그린은 단순하지만 그린 위의 능선이 두 개로 나뉘어 진다. 효율적인 퍼팅을 위해서 클럽 선택에 신중하여야한다.'
+},
+6: {
+name: '6번 홀',
+white: '347m',
+lady: '287m',
+par: 4,
+strategy: '그늘집을 방문하고 시작하는 이번 홀은 코스에서 마치 가장 긴 파 4홀처럼 보여진다. 또한 위로 향하는 경사면이 있어 장타자들에게 유리한 홀이다. 그린 공략은 왼쪽에서 오른쪽으로 향하는 공략으로 진행되어야 한다. 따라서 골퍼는 페어웨이 왼쪽에서 그린을 공략해야지만 그린 왼쪽에 위치한 벙커에 대한 위험을 최소화 할 수 있다.'
+},
+7: {
+name: '7번 홀',
+white: '137m',
+lady: '120m',
+par: 3,
+strategy: '이번 파 3홀에서는 그린이 매우 특이하게 조성 될 것이므로 여타 홀과 매우 다르다. 그린의 표면은 골퍼들에게 왼쪽으로 공략하게끔 유도한다. 그린의 오른쪽 앞은 큰 벙커로 인하여 공략이 힘들게 된다. 하지만 실제로 벙커는 그린과 비교적 거리를 두고 있다. 이번 홀에서는 비교적 많은 골퍼들이 자신들의 파 세이브를 위해서 그린 오른쪽 앞에서 칩핑이 필요로 한다는 것에 대해 매우 놀라게 될 것이다.'
+},
+8: {
+name: '8번 홀',
+white: '328m',
+lady: '236m',
+par: 4,
+strategy: '코스에서 가장 긴 파4홀인 이번 홀은 아래로 향하는 경사면을 가지고 있으며 매우 넓은 페어웨이를 가지고 있다. 대부분의 골퍼들이 어프로치를 롱 아이언이나 페어웨이 우드로 공략할 것이다. 그린의 앞부분은 매우 넓게 조성되어 그린 전체가 매우 크게 조성된다. 페어웨이 공략에 있어서는 매우 신중하게 공략방법을 선택하여야 한다. 왜냐하면 페어웨이 중앙에 벙커가 조성될 것이기 때문이다. 하지만 매우 긴 장타자가 아니면 벙커에 빠지는 골퍼는 많지 않을 것이다.'
+},
+9: {
+name: '9번 홀',
+white: '555m',
+lady: '496m',
+par: 5,
+strategy: '18홀을 마감하는 이번 홀은 모든 요소에 대해서 조금씩 가미되어 있다. 환상적인 폭포가 그린 뒤편에 조성되어 티에서부터 폭포의 아름다운 모습을 감상할 수 있으며 이는 곧 코스의 오른편 모두가 물로서 이어지게끔 한다. 많은 벙커들이 티샷의 공략에 영향을 줄 것처럼 보이지만 실제로 긴 장타를 구사하는 골퍼에게만 영향을 주며 페어웨이 중앙에 위치한 페어웨이 벙커는 세컨샷에서 충분히 넘길 수 있는 위치에 있다. 그린은 비교적 평평하게 조성되어 있어 그린에 쉽게 도달하게 된다면 버디와 파는 쉽게 할 수 있을 것이다. 그린 뒤편에는 이 모든 것을 바로 볼 수 있는 클럽하우스가 있어 매우 흥미로운 풍경이 될 것이다.'
+}
+}
+}
+};
+function toggleCourseMenu() {
+const menu = document.getElementById('courseMenu');
+menu.classList.toggle('hidden');
+}
+
+function preloadImages() {
+  var images = [
+    "image1.jpg",
+    "image2.jpg",
+    "image3.jpg"
+  ];
+
+  for (var i = 1; i < 10; i++) {
+    var img = new Image();
+    img.src = 'course_image_hon_'+ i.toString()+'.png';
+  }
+  for (var i = 1; i < 10; i++) {
+    var img = new Image();
+    img.src = 'course_image_ba_'+ i.toString()+'.png';
+  }
+  for (var i = 1; i < 10; i++) {
+    var img = new Image();
+    img.src = 'course_image_mi_'+ i.toString()+'.png';
+  }
+}
+
+window.onload = preloadImages;
+/*
+background[18] = []
+for (var i=0 ; i < 18 ; i++){
+    console.log("background preloading")
+    //console.log(i)
+    var temp = i + 1
+    var tempId = 'background_' + temp
+    console.log(tempId)
+    background[i] = document.getElementById(tempId);
+    background[i].style.backgroundImage = `url('/images/hole_${i + 1}.png')`;
+    background[i].style.display = 'none';
+}
+
+// 이전 홀로 이동하는 함수
+$('#prev-hole-btn').click(function() {
+    if (currentHoleIndex > 0) {
+        //saveDrawing();
+        
+        //drawingData = [];
+        //redraw();
+        preHoleIndex = currentHoleIndex
+        //turn off pre hole
+        var temp = preHoleIndex + 1
+        var tempId = 'background_' + temp
+        console.log(tempId)
+        background = document.getElementById(tempId);
+        background.style.display = 'none';
+    
+
+        currentHoleIndex--;
+        updateHoleInfo();
+        loadDrawing();
+        
+        // 여기에 이전 홀 샷 정보를 불러오고 표시하는 함수 호출
+    }
+});
+
+
+*/
+
+function selectCourse(course) {
+currentCourse = course;
+currentHole = 1;
+document.getElementById('selectedCourse').textContent = `${course} 코스`;
+document.getElementById('courseMenu').classList.add('hidden');
+updateHoleInfo();
+}
+function changeHole(direction) {
+if (direction === 'prev' && currentHole > 1) {
+currentHole--;
+} else if (direction === 'next' && currentHole < courseData[currentCourse].totalHoles) {
+currentHole++;
+}
+updateHoleInfo();
+}
+function updateHoleInfo() {
+const hole = courseData[currentCourse].holes[currentHole];
+document.getElementById('holeName').textContent = hole.name;
+document.getElementById('whiteDistance').textContent = `White ${hole.white}`;
+document.getElementById('ladyDistance').textContent = `Lady ${hole.lady}`;
+document.getElementById('par').textContent = `Par ${hole.par}`;
+document.getElementById('courseStrategy').textContent = hole.strategy;
+document.getElementById('prevHole').disabled = currentHole === 1;
+document.getElementById('nextHole').disabled = currentHole === courseData[currentCourse].totalHoles;
+const coursePrefix = {
+'혼솔': 'hon',
+'바른': 'ba',
+'미쁨': 'mi'
+};
+document.getElementById('courseImage').src = `course_image_${coursePrefix[currentCourse]}_${currentHole}.png`;
+}
+document.addEventListener('DOMContentLoaded', () => {
+updateHoleInfo();
+let touchStartX = 0;
+let touchEndX = 0;
+document.addEventListener('touchstart', e => {
+touchStartX = e.changedTouches[0].screenX;
+});
+document.addEventListener('touchend', e => {
+touchEndX = e.changedTouches[0].screenX;
+handleSwipe();
+});
+function handleSwipe() {
+const swipeThreshold = 50;
+const diff = touchStartX - touchEndX;
+if (Math.abs(diff) > swipeThreshold) {
+if (diff > 0 && currentHole < courseData[currentCourse].totalHoles) {
+changeHole('next');
+} else if (diff < 0 && currentHole > 1) {
+changeHole('prev');
+}
+}
+}
+});
+</script>
+</body>
+</html>
